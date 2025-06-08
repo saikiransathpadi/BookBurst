@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { BookOpen, Search, TrendingUp, User, LogOut, Menu, X } from 'lucide-react';
+import { BookOpen, Search, TrendingUp, User, LogOut, Menu, X, History } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useState } from 'react';
 
@@ -20,6 +20,7 @@ const Navbar: React.FC = () => {
     { path: '/bookshelf', label: 'My Books', icon: BookOpen },
     { path: '/explore', label: 'Explore', icon: TrendingUp },
     { path: '/search', label: 'Search', icon: Search },
+    { path: '/history', label: 'History', icon: History },
   ];
   const navItemsPublic = [
     { path: '/explore', label: 'Explore', icon: TrendingUp },
