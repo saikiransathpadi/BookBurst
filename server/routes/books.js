@@ -52,11 +52,15 @@ router.post('/add', authenticate, async (req, res) => {
 // Get user's bookshelf
 router.get('/shelf', authenticate, async (req, res) => {
   try {
-    const { status } = req.query;
+    const { status, book } = req.query;
     const filter = { user: req.user._id };
     
     if (status) {
       filter.status = status;
+    }
+
+    if (book){
+      filter.book = book
     }
 
     const userBooks = await UserBook.find(filter)
@@ -109,10 +113,10 @@ router.post('/shelf', authenticate, async (req, res) => {
 });
 
 // Update book in user's shelf
-router.put('/shelf/:id', authenticate, async (req, res) => {
+router.put('/shelf/:book', authenticate, async (req, res) => {
   try {
     const userBook = await UserBook.findOne({
-      _id: req.params.id,
+      book: req.params.book,
       user: req.user._id
     });
 

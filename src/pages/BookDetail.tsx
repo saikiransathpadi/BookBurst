@@ -39,6 +39,7 @@ const BookDetail: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [userHasReviewed, setUserHasReviewed] = useState(false);
+  const [userBook, setUserBook] = useState<any>({})
 
   const fetchBookDetails = async () => {
     try {
@@ -48,6 +49,10 @@ const BookDetail: React.FC = () => {
       
       // Check if current user has already reviewed this book
       if (isAuthenticated) {
+        const userbookResp = await axios.get('/api/books/shelf', { params: { book: id }, withCredentials: true })
+        if (userbookResp.data && userbookResp.data.length) {
+          setUserBook(userbookResp.data[0])
+        }
         const userReview = response.data.reviews.find(
           (review: Review) => review.user.username === localStorage.getItem('username')
         );
@@ -78,6 +83,20 @@ const BookDetail: React.FC = () => {
     } catch (error) {
       console.error('Failed to add book to shelf:', error);
       alert('Failed to add book to shelf');
+    }
+  };
+
+  const handleStatusChange = async (status: string) => {
+    try {
+      await axios.put(`api/books/shelf/${id}`, {
+        status
+      }, { withCredentials: true });
+      
+      // You might want to show a success message here
+      alert('Status updated successfully');
+    } catch (error) {
+      console.error('Failed to update status:', error);
+      alert('Failed to update status');
     }
   };
 
@@ -201,6 +220,15 @@ const BookDetail: React.FC = () => {
                       <span>Write Review</span>
                     </button>
                   )}
+                  <select
+                  onChange={(e) => handleStatusChange(e.target.value)}
+                  className="flex items-center space-x-2 bg-white text-amber-600 border-2 border-amber-600 px-4 py-2 rounded-lg hover:bg-amber-50 transition-colors"
+                  value={userBook && userBook.status as string}
+                >
+                  <option value="want-to-read">Want to Read</option>
+                  <option value="reading">Currently Reading</option>
+                  <option value="finished">Finished</option>
+                </select>
                 </div>
               )}
             </div>
