@@ -55,7 +55,7 @@ const AddBookModal: React.FC<AddBookModalProps> = ({ isOpen, onClose, onBookAdde
         publishedYear: data.publishedYear || undefined,
         pageCount: data.pageCount || undefined,
         coverImage: data.coverImage || undefined
-      }, { withCredentials: true });
+      });
 
       // Then add it to the user's shelf
       await axios.post('/api/books/shelf', {
@@ -63,7 +63,7 @@ const AddBookModal: React.FC<AddBookModalProps> = ({ isOpen, onClose, onBookAdde
         status: data.status,
         rating: data.rating || undefined,
         notes: data.notes || undefined
-      }, { withCredentials: true });
+      });
 
       reset();
       onBookAdded();

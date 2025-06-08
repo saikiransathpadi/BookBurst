@@ -71,7 +71,7 @@ const BookDetail: React.FC = () => {
       await axios.post('/api/books/shelf', {
         bookId: id,
         status
-      }, { withCredentials: true });
+      });
       
       // You might want to show a success message here
       alert('Book added to your shelf!');

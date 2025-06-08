@@ -45,7 +45,7 @@ const CreateReviewModal: React.FC<CreateReviewModalProps> = ({
         rating: selectedRating,
         content: data.content,
         wouldRecommend: data.wouldRecommend
-      }, { withCredentials: true });
+      });
 
       reset();
       setSelectedRating(0);

@@ -39,7 +39,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const checkAuth = async () => {
     try {
-      const response = await axios.get('/api/auth/me', { withCredentials: true });
+      const response = await axios.get('/api/auth/me');
       setUser(response.data.user);
     } catch (error) {
       setUser(null);
@@ -53,7 +53,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
   const login = async (email: string, password: string) => {
-    const response = await axios.post('/api/auth/login', { email, password }, { withCredentials: true });
+    const response = await axios.post('/api/auth/login', { email, password });
     setUser(response.data.user);
   };
 
@@ -63,12 +63,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       password, 
       username, 
       displayName 
-    }, { withCredentials: true });
+    });
     setUser(response.data.user);
   };
 
   const logout = async () => {
-    await axios.post('/api/auth/logout', {}, { withCredentials: true });
+    await axios.post('/api/auth/logout', {});
     setUser(null);
   };
 
