@@ -32,7 +32,9 @@ const ReadingHistory: React.FC = () => {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const response = await axios.get('/api/books/history/timeline');
+        const response = await axios.get('/api/books/history/timeline', {
+          withCredentials: true
+        });
         setTimeline(response.data);
       } catch (error) {
         console.error('Failed to fetch reading history:', error);

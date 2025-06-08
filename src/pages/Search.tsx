@@ -25,7 +25,9 @@ const Search: React.FC = () => {
 
     try {
       setLoading(true);
-      const response = await axios.get(`/api/books/search?q=${encodeURIComponent(query)}`);
+      const response = await axios.get(`/api/books/search?q=${encodeURIComponent(query)}`, {
+        withCredentials: true
+      });
       setBooks(response.data);
       setHasSearched(true);
     } catch (error) {
@@ -40,7 +42,7 @@ const Search: React.FC = () => {
       await axios.post('/api/books/shelf', {
         bookId,
         status
-      });
+      }, { withCredentials: true });
       
       alert('Book added to your shelf!');
     } catch (error) {

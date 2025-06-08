@@ -38,7 +38,7 @@ const Bookshelf: React.FC = () => {
 
   const fetchBooks = async () => {
     try {
-      const response = await axios.get('/api/books/shelf');
+      const response = await axios.get('/api/books/shelf', { withCredentials: true });
       setBooks(response.data);
     } catch (error) {
       console.error('Failed to fetch books:', error);
