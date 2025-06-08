@@ -21,6 +21,9 @@ const Navbar: React.FC = () => {
     { path: '/explore', label: 'Explore', icon: TrendingUp },
     { path: '/search', label: 'Search', icon: Search },
   ];
+  const navItemsPublic = [
+    { path: '/explore', label: 'Explore', icon: TrendingUp },
+  ];
 
   if (!isAuthenticated) {
     return (
@@ -31,6 +34,22 @@ const Navbar: React.FC = () => {
               <BookOpen className="h-8 w-8 text-amber-600" />
               <span className="text-xl font-bold text-gray-900">BookBurst</span>
             </Link>
+            <div className="hidden md:flex items-center space-x-8">
+            {navItemsPublic.map(({ path, label, icon: Icon }) => (
+              <Link
+                key={path}
+                to={path}
+                className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  location.pathname === path
+                    ? 'text-amber-600 bg-amber-50'
+                    : 'text-gray-600 hover:text-amber-600 hover:bg-amber-50'
+                }`}
+              >
+                <Icon className="h-4 w-4" />
+                <span>{label}</span>
+              </Link>
+            ))}
+          </div>
             <div className="flex items-center space-x-4">
               <Link
                 to="/login"

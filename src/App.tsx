@@ -63,9 +63,9 @@ const AppRoutes: React.FC = () => {
       <Route 
         path="/explore" 
         element={
-          <ProtectedRoute>
+          // <ProtectedRoute>
             <Layout><Explore /></Layout>
-          </ProtectedRoute>
+          // </ProtectedRoute>
         } 
       />
       <Route 
