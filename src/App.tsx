@@ -12,6 +12,10 @@ import BookDetail from './pages/BookDetail';
 import Profile from './pages/Profile';
 import ReadingHistory from './pages/ReadingHistory';
 
+import axios from 'axios';
+axios.defaults.baseURL = 'https://bookburst-aoqq.onrender.com/';
+
+
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
   
