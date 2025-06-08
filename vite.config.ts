@@ -11,6 +11,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         target: 'https://bookburst-aoqq.onrender.com/',
+        // target: 'http://localhost:5001',
         changeOrigin: true
       }
     }
